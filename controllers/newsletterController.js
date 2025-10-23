@@ -26,6 +26,8 @@ export const subscribeNewsletter = async (req, res) => {
         updateEnabled: true,
     };
 
+    console.log("Esse foi o Payload enviado pro Brevo:", payload);
+
     const response = await fetch("https://api.brevo.com/v3/contacts", {
         method: "POST",
         headers: {
