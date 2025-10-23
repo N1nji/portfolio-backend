@@ -6,7 +6,7 @@ export const sendContactMessage = async (req, res) => {
     if (!firstName || !lastName || !email || !message) {
         return res.status(400).json({ error: "Todos os campos são obrigatórios." });
     }
-    
+
     console.log("Request recebido no /api/contact:", req.body);
 
     try {
@@ -14,7 +14,7 @@ export const sendContactMessage = async (req, res) => {
             service: "gmail",
             auth: {
                 user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
+                pass: process.env.EMAIL_PASS, // lembra: tem que ser App Password
             },
         });
 
@@ -31,9 +31,14 @@ export const sendContactMessage = async (req, res) => {
             `,
         });
 
+        console.log("Mensagem enviada com sucesso!");
         res.status(200).json({ message: "Mensagem enviada com sucesso!" });
+
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "Erro ao enviar a mensagem. "});
+        console.error("Erro Nodemailer:", error); // <- log detalhado
+        res.status(500).json({ 
+            error: "Erro ao enviar a mensagem.", 
+            details: error.toString()  // <- mostra o que realmente deu errado
+        });
     }
 };
