@@ -6,6 +6,8 @@ export const sendContactMessage = async (req, res) => {
     if (!firstName || !lastName || !email || !message) {
         return res.status(400).json({ error: "Todos os campos são obrigatórios." });
     }
+    
+    console.log("Request recebido no /api/contact:", req.body);
 
     try {
         const transporter = nodemailer.createTransport({
