@@ -20,6 +20,7 @@ export const sendContactMessage = async (req, res) => {
 
         await transporter.sendMail({
             from: `"${firstName} ${lastName}" <${email}>`,
+            replyTo: `${firstName} ${lastName} <${email}>`,
             to: process.env.EMAIL_USER,
             subject: `Mensagem de ${firstName} ${lastName} - N1S1 Games`,
             html: `
