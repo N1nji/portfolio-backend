@@ -5,6 +5,8 @@ import contactRoutes from "./routes/contactRoutes.js";
 import newsletterRoutes from "./routes/newsletterRoutes.js";
 
 dotenv.config();
+console.log(process.env.EMAIL_USER);
+
 
 const app = express();
 

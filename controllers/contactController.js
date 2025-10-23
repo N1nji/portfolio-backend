@@ -11,10 +11,12 @@ export const sendContactMessage = async (req, res) => {
 
     try {
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
             auth: {
                 user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS, // lembra: tem que ser App Password
+                pass: process.env.EMAIL_PASS,
             },
         });
 
@@ -36,10 +38,10 @@ export const sendContactMessage = async (req, res) => {
         res.status(200).json({ message: "Mensagem enviada com sucesso!" });
 
     } catch (error) {
-        console.error("Erro Nodemailer:", error); // <- log detalhado
+        console.error("Erro Nodemailer:", error);
         res.status(500).json({ 
             error: "Erro ao enviar a mensagem.", 
-            details: error.toString()  // <- mostra o que realmente deu errado
+            details: error.toString()
         });
     }
 };
