@@ -10,15 +10,15 @@ console.log(process.env.EMAIL_USER);
 
 const app = express();
 
-//  Configuração completa do CORS
+
 const allowedOrigins = [
-  "https://portfolio-frontend-kappa-five.vercel.app", // frontend no Vercel
-  "http://localhost:5173", // frontend local
+  "https://portfolio-n1nji.vercel.app/",
+  "http://localhost:5173",
 ];
 
 app.use(cors({
   origin: function(origin, callback) {
-    if(!origin) return callback(null, true); // permite requests de ferramentas como Postman
+    if(!origin) return callback(null, true); // permite requests de ferramentas tipo o Postman
     if(allowedOrigins.indexOf(origin) === -1){
         const msg = `CORS policy: origin ${origin} not allowed`;
         return callback(new Error(msg), false);
