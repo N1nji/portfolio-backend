@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import axios from "axios";
 
 export const sendContactMessage = async (req, res) => {
     const { firstName, lastName, email, message } = req.body;
@@ -7,41 +7,49 @@ export const sendContactMessage = async (req, res) => {
         return res.status(400).json({ error: "Todos os campos são obrigatórios." });
     }
 
-    console.log("Request recebido no /api/contact:", req.body);
+    console.log("📩 Novo contato recebido:", req.body);
 
     try {
-        const transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
-            port: 465,
-            secure: true,
-            auth: {
-                user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS,
+        const response = await axios.post(
+            "https://api.brevo.com/v3/smtp/email",
+            {
+                sender: { 
+                    name: `${firstName} ${lastName}`, 
+                    email: process.env.EMAIL_USER
+                },
+                replyTo: { 
+                    email, 
+                    name: `${firstName} ${lastName}` 
+                },
+                to: [{ 
+                    email: process.env.EMAIL_USER, 
+                    name: "N1S1 Games" 
+                }],
+                subject: `Mensagem de ${firstName} ${lastName} - N1S1 Games`,
+                htmlContent: `
+                    <h3>Nova mensagem do site - N1S1 Games!</h3>
+                    <p><strong>Nome:</strong> ${firstName} ${lastName}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Mensagem:</strong></p>
+                    <p>${message}</p>
+                `,
             },
-        });
+            {
+                headers: {
+                    "api-key": process.env.BREVO_API_KEY,
+                    "Content-Type": "application/json",
+                },
+            }
+        );
 
-        await transporter.sendMail({
-            from: process.env.EMAIL_USER,
-            replyTo: `${firstName} ${lastName} <${email}>`,
-            to: process.env.EMAIL_USER,
-            subject: `Mensagem de ${firstName} ${lastName} - N1S1 Games`,
-            html: `
-                <h3>Nova mensagem do site - N1S1 Games!</h3>
-                <p><strong>Nome:</strong> ${firstName} ${lastName}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Mensagem:</strong></p>
-                <p>${message}</p>
-            `,
-        });
-
-        console.log("Mensagem enviada com sucesso!");
+        console.log("✅ Mensagem enviada com sucesso via Brevo!", response.data);
         res.status(200).json({ message: "Mensagem enviada com sucesso!" });
 
     } catch (error) {
-        console.error("Erro Nodemailer:", error);
+        console.error("❌ Erro ao enviar pelo Brevo:", error.response?.data || error.message);
         res.status(500).json({ 
             error: "Erro ao enviar a mensagem.", 
-            details: error.toString()
+            details: error.response?.data || error.message,
         });
     }
 };
