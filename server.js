@@ -12,7 +12,7 @@ const app = express();
 
 
 const allowedOrigins = [
-  "https://portfolio-n1nji.vercel.app/",
+  "https://portfolio-n1nji.vercel.app",
   "http://localhost:5173",
 ];
 
