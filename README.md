@@ -12,35 +12,52 @@ Além de exibir meus trabalhos, ele é um projeto vivo sempre em evolução, ass
 
 O site inclui:
 
-🎨 Design limpo e interativo, com foco na experiência do usuário.
-💬 Formulário de contato integrado via Brevo (Sendinblue).
-📰 Sistema de Newsletter funcional e conectado ao Brevo.
-🚀 Deploy otimizado com Vercel (Frontend) e Railway (Backend).
-🐾 Referências e estilos inspirados no nosso jogo autoral Mister Kitty.
+🎨 Design limpo e interativo, com foco na experiência do usuário
+
+💬 Formulário de contato integrado via Brevo (Sendinblue)
+
+📰 Sistema de Newsletter funcional e conectado ao Brevo
+
+🚀 Deploy otimizado com Vercel (Frontend) e Railway (Backend)
+
+🐾 Referências e estilos inspirados no nosso jogo autoral Mister Kitty
 
 🎨 Front-end
 
 ⚛️ React + Vite — estrutura moderna e rápida para o front-end
+
 🎨 TailwindCSS — estilização ágil e responsiva
+
 🎬 Framer Motion — animações fluidas e profissionais
+
 ✨ tsparticles — partículas interativas no background (efeito estelar 🌌)
+
 📬 Integração com API Brevo (Newsletter)
+
 🔐 Axios — requisições seguras ao backend
+
 ☁️ Vercel — hospedagem do front-end com build automático
 
 ⚙️ Back-end
 
 🟢 Node.js + Express — servidor rápido e leve
+
 🛡️ CORS + Dotenv — segurança e gerenciamento de variáveis de ambiente
+
 📬 Brevo API — integração para envio e gerenciamento de inscrições da newsletter
+
 ⚙️ Nodemailer (via Brevo SMTP) — envio de e-mails com autenticação segura
+
 ☁️ Railway — hospedagem do servidor backend
 
 🧩 Extras
 
 📂 Arquitetura modular com controllers e rotas bem organizadas
+
 🔄 Proxy configurado no Vite para ambiente local (/api → localhost:5000)
+
 🌟 Animações suaves + background reativo
+
 🐱‍👤 Design clean e interativo, com seção About, Skills-Techs e Newsletter funcional
 
 🐱 Universo Mister Kitty
