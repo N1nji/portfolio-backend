@@ -72,7 +72,7 @@ ________________________________________________________________________________
 O portfólio também reflete um pouco do mundo de Mister Kitty, meu jogo 2D indie desenvolvido em Godot 4.4.
 No jogo, um gatinho perdido enfrenta desafios para encontrar o caminho de volta pra casa uma metáfora sobre persistência e autodescoberta.
 
-🪐✨ “Às vezes, os maiores códigos são escritos com o coração.”
+🪐✨ “Do sonho ao código, da ideia ao controle — somos a N1S1.”
 
 
 🌐 Acesse o Site
